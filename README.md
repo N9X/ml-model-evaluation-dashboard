@@ -232,7 +232,7 @@ This project is organized to be compatible with Streamlit Community Cloud:
 - The app can be launched from the repository root with `streamlit run app.py`.
 - The dataset is not required at runtime for model inference; the app uses the uploaded CSV plus the saved model pipelines.
 
-The application is deployed at [the Streamlit Community Cloud URL](https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/).
+The application is deployed at [https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/](https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/).
 
 
 ## Additional Notes
