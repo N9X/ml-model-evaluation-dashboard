@@ -130,12 +130,18 @@ Deployment URL: [https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.st
 
 ## I. Instructions to Run Locally
 
-1. Open a terminal in the project root.
+1. Clone the repository and enter the project directory:
+
+```bash
+git clone https://github.com/N9X/ml-model-evaluation-dashboard.git
+cd ml-model-evaluation-dashboard
+```
+
 2. Create and activate a virtual environment:
 
 ```bash
 python -m venv venv
-# Windows
+# Windows PowerShell
 .\venv\Scripts\Activate.ps1
 # macOS/Linux
 source venv/bin/activate
@@ -148,24 +154,28 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-4. Train the models and generate evaluation outputs:
-
-```bash
-python train_models.py
-```
-
-5. Run the Streamlit application:
+4. Start the Streamlit application using the included trained models:
 
 ```bash
 streamlit run app.py
 ```
 
-6. Open the local Streamlit URL displayed in the terminal.
+5. In the sidebar, upload a compatible labelled CSV, or switch on **No file? Use the bundled test_data.csv** to try the included held-out test data.
+
+The trained Joblib models, evaluation results, and `test_data.csv` are included in the repository, so retraining is not needed to run the application. To reproduce the training and regenerate the models and evaluation outputs instead, run:
+
+```bash
+python train_models.py
+```
+
+After launching, open the local Streamlit URL displayed in the terminal.
 
 ## J. Project Structure
 
 ```text
 ml-model-evaluation-dashboard/
+├── .devcontainer/
+│   └── devcontainer.json
 ├── app.py
 ├── train_models.py
 ├── inspect_dataset.py
@@ -217,7 +227,6 @@ ml-model-evaluation-dashboard/
 │   ├── model_evaluation.py
 │   ├── model_training.py
 │   └── project_paths.py
-└── test_data.csv
 ```
 
 ## Deployment Preparation for Streamlit Community Cloud

@@ -1,5 +1,0 @@
-Shape: (41188, 21)
-Duplicate rows: 12
-Target distribution: {0: 36548, 1: 4640}
-Unknown categorical values handled by converting them to NaN and imputing as 'missing' during preprocessing.
-Duration excluded from predictive features because it is only known after the call and would create data leakage.
