@@ -75,37 +75,36 @@ The actual evaluation results generated from the held-out test dataset are shown
 ## F. Model Performance Observations
 
 ### Logistic Regression
-- Strongest ROC-AUC among the tested models.
-- Balanced recall and campaign response detection, which is important for subscription prediction.
-- Performs well in an imbalanced setting when using class weighting and a careful decision threshold.
-- Lower precision than some alternatives, indicating that while it captures positive subscriptions effectively, it produces more false positives than the most conservative model.
+- Highest ROC-AUC (0.8009), making it the top model under the project's AUC-first ranking.
+- Recall is 0.6455, second only to the Decision Tree's 0.6756.
+- Accuracy is 0.8352, with precision 0.3679, F1 0.4687, and MCC 0.4007.
+- Its class-weighted configuration offers useful positive-class detection, though its precision shows that false positives remain a trade-off.
 
 ### Decision Tree
-- Captures non-linear relationships and interpretable decision rules.
-- Competitive AUC and recall, but weaker precision and MCC than logistic regression.
-- More sensitive to class imbalance and may overfit without careful tree depth control.
+- Captures non-linear relationships and can express interpretable decision rules.
+- Has the second-highest AUC (0.7958) and the highest recall (0.6756).
+- Accuracy is 0.8178, precision 0.3432, F1 0.4552, and MCC 0.3893; its recall advantage comes with relatively low precision.
 
 ### K-Nearest Neighbors (KNN)
-- Best raw accuracy because it classifies many majority-class examples correctly.
-- However, it has the weakest AUC and poor recall in the positive class, which makes it less suitable for a minority-class business problem like term deposit acquisition.
-- Its performance highlights how accuracy alone can be misleading in imbalanced classification tasks.
+- Highest accuracy (0.8951) and precision (0.5731) among the five models.
+- It has the lowest AUC (0.7559), recall (0.2705), F1 (0.3675), and MCC (0.3451).
+- The low recall indicates that it misses many actual subscribers; its high accuracy is therefore not sufficient evidence of good minority-class performance.
 
 ### Gaussian Naive Bayes
-- Efficient and fast, with simple probabilistic assumptions.
-- Performs reasonably for recall but lags behind other models in AUC and MCC.
-- Assumes feature independence, which is a simplification for this marketing dataset and limits performance.
+- Accuracy is 0.8049, AUC 0.7755, precision 0.3172, recall 0.6347, F1 0.4230, and MCC 0.3490.
+- Its recall is competitive, but its precision and overall discrimination are weaker than the top-ranked alternatives.
+- The conditional-independence assumption makes this a simple probabilistic baseline, though it may not capture dependencies among these features.
 
 ### Support Vector Machine (SVM)
-- Achieved the highest F1 and MCC among the models, indicating robust discrimination in the positive class.
-- Also showed the highest accuracy among the models.
-- However, its ROC-AUC is lower than logistic regression, and it was computationally heavier to train.
-- Still a strong option when balanced classification quality is prioritized.
+- Highest F1 (0.4964) and MCC (0.4299), and second-highest accuracy (0.8562).
+- Its AUC is 0.7798, behind Logistic Regression (0.8009) and Decision Tree (0.7958); precision is 0.4098 and recall is 0.6293.
+- These results make SVM a strong choice when F1 and MCC are emphasized, although its training was computationally heavier in this environment.
 
 ## G. Overall Winner
 
-The best overall model for this assignment is the Logistic Regression model because it delivered the strongest ROC-AUC (0.8009) and strong recall (0.6455), which are critical when evaluating a minority positive class in a highly imbalanced dataset. It also had a strong MCC and F1 score, making it the most balanced choice rather than the model with the highest raw accuracy alone.
+The project ranks models AUC first, followed by F1, recall, and MCC as tie-breakers. Logistic Regression is therefore the overall winner because it has the highest AUC (0.8009); no later metric displaces it under this ordering. Its recall is also strong at 0.6455, while its F1 (0.4687) and MCC (0.4007) are competitive but not the highest.
 
-The Support Vector Machine had the best F1 and MCC, but its AUC was lower and the assignment specifically prioritizes AUC, recall, and MCC in the model selection rationale. Therefore, Logistic Regression was selected as the overall winner for this project.
+This is an AUC-first selection, not a claim that Logistic Regression leads every metric. SVM has the best F1 (0.4964) and MCC (0.4299), while KNN has the best accuracy (0.8951) and precision (0.5731). Logistic Regression is selected because the ranking prioritizes AUC, and its ROC-AUC is the highest.
 
 ## H. Streamlit Application
 
@@ -127,7 +126,7 @@ The application allows users to:
 
 The app is designed to load the saved joblib models from the `models/` directory and never retrain on uploaded data.
 
-Deployment URL (placeholder): https://your-streamlit-app.streamlit.app/
+Deployment URL: [https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/](https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/)
 
 ## I. Instructions to Run Locally
 
@@ -137,7 +136,7 @@ Deployment URL (placeholder): https://your-streamlit-app.streamlit.app/
 ```bash
 python -m venv venv
 # Windows
-venv\Scripts\activate
+.\venv\Scripts\Activate.ps1
 # macOS/Linux
 source venv/bin/activate
 ```
@@ -166,7 +165,7 @@ streamlit run app.py
 ## J. Project Structure
 
 ```text
-ML-Assignment-2/
+ml-model-evaluation-dashboard/
 ├── app.py
 ├── train_models.py
 ├── inspect_dataset.py
@@ -179,37 +178,46 @@ ML-Assignment-2/
 │   │   └── bank-additional/
 │   │       └── bank-additional/
 │   │           ├── bank-additional-full.csv
+│   │           ├── bank-additional-names.txt
 │   │           └── bank-additional.csv
 │   └── processed/
 │       ├── bank_marketing_processed.csv
 │       └── eda_summary.txt
 ├── models/
-│   ├── logistic_regression.joblib
 │   ├── decision_tree.joblib
-│   ├── k_nearest_neighbors.joblib
 │   ├── gaussian_naive_bayes.joblib
+│   ├── k_nearest_neighbors.joblib
+│   ├── logistic_regression.joblib
 │   └── support_vector_machine.joblib
 ├── outputs/
 │   ├── evaluation_results.csv
 │   └── plots/
 │       ├── accuracy_comparison.png
 │       ├── auc_comparison.png
+│       ├── decision_tree_confusion_matrix.png
+│       ├── decision_tree_roc_curve.png
 │       ├── f1_comparison.png
+│       ├── gaussian_naive_bayes_confusion_matrix.png
+│       ├── gaussian_naive_bayes_roc_curve.png
+│       ├── k_nearest_neighbors_confusion_matrix.png
+│       ├── k_nearest_neighbors_roc_curve.png
+│       ├── logistic_regression_confusion_matrix.png
+│       ├── logistic_regression_roc_curve.png
 │       ├── mcc_comparison.png
+│       ├── missing_values.png
 │       ├── precision_comparison.png
 │       ├── recall_comparison.png
 │       ├── roc_comparison.png
-│       ├── target_distribution.png
-│       └── confusion_matrix and ROC plots for each model
-├── notebooks/
-├── screenshots/
+│       ├── support_vector_machine_confusion_matrix.png
+│       ├── support_vector_machine_roc_curve.png
+│       └── target_distribution.png
 ├── src/
 │   ├── __init__.py
-│   ├── project_paths.py
 │   ├── data_preprocessing.py
+│   ├── model_evaluation.py
 │   ├── model_training.py
-│   └── model_evaluation.py
-└── venv/
+│   └── project_paths.py
+└── test_data.csv
 ```
 
 ## Deployment Preparation for Streamlit Community Cloud
@@ -223,7 +231,9 @@ This project is organized to be compatible with Streamlit Community Cloud:
 - The app can be launched from the repository root with `streamlit run app.py`.
 - The dataset is not required at runtime for model inference; the app uses the uploaded CSV plus the saved model pipelines.
 
-Important: this project is ready for deployment preparation, but no deployment claim is made unless a live Streamlit Cloud deployment has been created and verified by the user.
+The application is deployed at [the Streamlit Community Cloud URL](https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/).
+
+The `screenshots/` directory is not included in the repository; add any required BITS Virtual Lab screenshot manually after capturing it. No BITS Virtual Lab execution or screenshot is claimed here.
 
 ## Additional Notes
 
