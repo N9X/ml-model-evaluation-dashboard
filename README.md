@@ -44,6 +44,19 @@ The dataset includes demographic and campaign-related characteristics such as:
 - A stratified 80:20 train-test split was used with `random_state=42` for reproducibility.
 - Preprocessing was fitted only on the training split to avoid leakage.
 
+## B.1 Assignment Deliverables and Additional Project Artifacts
+
+The official assignment deliverables are:
+
+1. Source code implementing the five classification models
+2. `requirements.txt`
+3. `README.md`
+4. `test_data.csv`
+5. Saved trained model files for all five classifiers
+6. The required preprocessing artifacts, included in the saved model pipelines
+
+The inspection and training/evaluation scripts can generate an `outputs/` directory with an evaluation CSV and plots. These are optional local artifacts, not official assignment deliverables, and are excluded from the repository.
+
 ## C. GitHub Repository Link
 
 GitHub repository URL: https://github.com/N9X/ml-model-evaluation-dashboard
@@ -162,7 +175,7 @@ streamlit run app.py
 
 5. In the sidebar, upload a compatible labelled CSV, or switch on **No file? Use the bundled test_data.csv** to try the included held-out test data.
 
-The trained Joblib models, evaluation results, and `test_data.csv` are included in the repository, so retraining is not needed to run the application. To reproduce the training and regenerate the models and evaluation outputs instead, run:
+The trained Joblib models and `test_data.csv` are included in the repository, so retraining is not needed to run the application. To reproduce training and regenerate the models, evaluation results, and optional local plots, run:
 
 ```bash
 python train_models.py
@@ -171,6 +184,8 @@ python train_models.py
 After launching, open the local Streamlit URL displayed in the terminal.
 
 ## J. Project Structure
+
+This tree reflects files currently tracked in the repository. Optional generated `outputs/` artifacts are excluded by `.gitignore`.
 
 ```text
 ml-model-evaluation-dashboard/
@@ -191,36 +206,13 @@ ml-model-evaluation-dashboard/
 │   │           ├── bank-additional-names.txt
 │   │           └── bank-additional.csv
 │   └── processed/
-│       ├── bank_marketing_processed.csv
-│       └── eda_summary.txt
+│       └── bank_marketing_processed.csv
 ├── models/
 │   ├── decision_tree.joblib
 │   ├── gaussian_naive_bayes.joblib
 │   ├── k_nearest_neighbors.joblib
 │   ├── logistic_regression.joblib
 │   └── support_vector_machine.joblib
-├── outputs/
-│   ├── evaluation_results.csv
-│   └── plots/
-│       ├── accuracy_comparison.png
-│       ├── auc_comparison.png
-│       ├── decision_tree_confusion_matrix.png
-│       ├── decision_tree_roc_curve.png
-│       ├── f1_comparison.png
-│       ├── gaussian_naive_bayes_confusion_matrix.png
-│       ├── gaussian_naive_bayes_roc_curve.png
-│       ├── k_nearest_neighbors_confusion_matrix.png
-│       ├── k_nearest_neighbors_roc_curve.png
-│       ├── logistic_regression_confusion_matrix.png
-│       ├── logistic_regression_roc_curve.png
-│       ├── mcc_comparison.png
-│       ├── missing_values.png
-│       ├── precision_comparison.png
-│       ├── recall_comparison.png
-│       ├── roc_comparison.png
-│       ├── support_vector_machine_confusion_matrix.png
-│       ├── support_vector_machine_roc_curve.png
-│       └── target_distribution.png
 ├── src/
 │   ├── __init__.py
 │   ├── data_preprocessing.py
@@ -242,7 +234,6 @@ This project is organized to be compatible with Streamlit Community Cloud:
 
 The application is deployed at [the Streamlit Community Cloud URL](https://ml-model-evaluation-dashboard-c6xry4pdpoh9dcapfefetw.streamlit.app/).
 
-The `screenshots/` directory is not included in the repository; add any required BITS Virtual Lab screenshot manually after capturing it. No BITS Virtual Lab execution or screenshot is claimed here.
 
 ## Additional Notes
 

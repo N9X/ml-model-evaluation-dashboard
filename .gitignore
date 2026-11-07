@@ -7,3 +7,4 @@ venv/
 .Rhistory
 dataset/raw/bank/
 dataset/raw/bank-additional/__MACOSX/
+outputs/
