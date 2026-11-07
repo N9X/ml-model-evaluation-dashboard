@@ -46,7 +46,7 @@ The dataset includes demographic and campaign-related characteristics such as:
 
 ## C. GitHub Repository Link
 
-GitHub repository URL: https://github.com/<your-username>/<your-repo-name>
+GitHub repository URL: https://github.com/N9X/ml-model-evaluation-dashboard
 
 ## D. Models Used
 
