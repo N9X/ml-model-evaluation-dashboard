@@ -109,21 +109,21 @@ The Support Vector Machine had the best F1 and MCC, but its AUC was lower and th
 
 ## H. Streamlit Application
 
-The project contains a professional Streamlit application in `app.py` titled:
+The project contains an interactive Streamlit evaluation dashboard in `app.py` titled:
 
-`Bank Marketing – Customer Subscription Prediction`
+`Model Evaluation Dashboard`
 
 The application allows users to:
 
 - Upload a CSV dataset for validation
+- Optionally try the bundled held-out test data without uploading a file
 - Read comma- or semicolon-delimited CSVs, including the original semicolon-delimited UCI files
 - Evaluate targets encoded as either `yes`/`no` or `1`/`0`
 - Confirm that required columns and target values are present
 - Select a saved model from the five trained pipelines
-- View evaluation metrics using key classification measures
-- Inspect the confusion matrix and classification report
-- Compare all five models side by side
-- Visualize the subscription prediction distribution
+- View the uploaded dataset preview and row count
+- View key metrics, ROC curve, confusion matrix, class report, and predicted class distribution
+- Compare all five models side by side on demand
 
 The app is designed to load the saved joblib models from the `models/` directory and never retrain on uploaded data.
 
