@@ -44,19 +44,6 @@ The dataset includes demographic and campaign-related characteristics such as:
 - A stratified 80:20 train-test split was used with `random_state=42` for reproducibility.
 - Preprocessing was fitted only on the training split to avoid leakage.
 
-## B.1 Assignment Deliverables and Additional Project Artifacts
-
-The official assignment deliverables are:
-
-1. Source code implementing the five classification models
-2. `requirements.txt`
-3. `README.md`
-4. `test_data.csv`
-5. Saved trained model files for all five classifiers
-6. The required preprocessing artifacts, included in the saved model pipelines
-
-The inspection and training/evaluation scripts can generate an `outputs/` directory with an evaluation CSV and plots. These are optional local artifacts, not official assignment deliverables, and are excluded from the repository.
-
 ## C. GitHub Repository Link
 
 GitHub repository URL: https://github.com/N9X/ml-model-evaluation-dashboard
